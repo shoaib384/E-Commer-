@@ -1,0 +1,660 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forno & Fable | Artisan Pizza</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: #f8f4eb;
+    color: #30251e;
+}
+
+:root {
+    --cream: #f8f4eb;
+    --red: #a73527;
+    --dark: #30251e;
+    --muted: #76685e;
+}
+
+nav {
+    height: 85px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8%;
+    background: var(--cream);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid #e7ded1;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 27px;
+    font-weight: 800;
+}
+
+.logo span {
+    color: var(--red);
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--dark);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.nav-links a:hover {
+    color: var(--red);
+}
+
+.nav-btn {
+    background: var(--red);
+    color: white;
+    padding: 13px 23px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 27px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.hero {
+    min-height: 620px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 65px 8%;
+    gap: 40px;
+}
+
+.hero-content small {
+    color: var(--red);
+    letter-spacing: 3px;
+    font-weight: 700;
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(45px, 5.5vw, 76px);
+    line-height: 1.1;
+    margin: 23px 0;
+}
+
+.hero h1 span {
+    color: var(--red);
+    font-style: italic;
+}
+
+.hero p {
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 460px;
+    font-size: 15px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 15px 25px;
+    background: var(--red);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    border: 1px solid var(--red);
+    cursor: pointer;
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--dark);
+    border-color: #b9aa9c;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    transition: .3s;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 470px;
+    object-fit: cover;
+    border-radius: 48% 48% 5px 5px;
+}
+
+.section {
+    padding: 85px 8%;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.section-heading small {
+    color: var(--red);
+    letter-spacing: 3px;
+    font-weight: 700;
+}
+
+.section-heading h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 43px;
+    margin-top: 12px;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.food-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: .3s;
+}
+
+.food-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px #30251e16;
+}
+
+.food-card img {
+    width: 100%;
+    height: 235px;
+    object-fit: cover;
+}
+
+.food-info {
+    padding: 23px;
+}
+
+.food-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+}
+
+.food-info p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.7;
+    margin: 12px 0;
+}
+
+.food-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.price {
+    color: var(--red);
+    font-weight: 700;
+    font-size: 19px;
+}
+
+.add-btn {
+    background: var(--dark);
+    color: white;
+    border: none;
+    padding: 11px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.add-btn:hover {
+    background: var(--red);
+}
+
+.story {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 55px;
+    align-items: center;
+    background: #eee6d9;
+}
+
+.story img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.story h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 43px;
+    margin: 15px 0;
+}
+
+.story p {
+    color: var(--muted);
+    line-height: 1.9;
+    margin-bottom: 22px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 5px;
+    transition: .3s;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.025);
+}
+
+.contact {
+    background: var(--dark);
+    color: white;
+    text-align: center;
+}
+
+.contact h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 43px;
+    margin: 15px 0;
+}
+
+.contact p {
+    color: #d0c4b9;
+    line-height: 1.8;
+}
+
+.contact .btn {
+    margin-top: 25px;
+}
+
+footer {
+    background: #211914;
+    color: white;
+    text-align: center;
+    padding: 27px;
+    font-size: 13px;
+}
+
+.cart {
+    background: #eee6d9;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 25px;
+    display: inline-block;
+    font-weight: 600;
+}
+
+@media(max-width: 850px) {
+    nav {
+        padding: 0 5%;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 85px;
+        left: 0;
+        width: 100%;
+        background: var(--cream);
+        flex-direction: column;
+        padding: 25px;
+        gap: 22px;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .nav-btn {
+        display: none;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-image img {
+        height: 350px;
+    }
+
+    .menu-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .story {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width: 550px) {
+    .menu-grid,
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding: 50px 6%;
+    }
+
+    .section {
+        padding: 65px 6%;
+    }
+
+    .section-heading h2 {
+        font-size: 34px;
+    }
+
+    .hero-buttons {
+        flex-wrap: wrap;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">FORNO <span>&</span> FABLE.</div>
+
+    <button class="menu-toggle" id="menuToggle">☰</button>
+
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#menu">Our Menu</a></li>
+        <li><a href="#about">Our Story</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <a href="#menu" class="nav-btn">ORDER PIZZA</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+    <div class="hero-content">
+        <small>AUTHENTIC TASTE • FRESH INGREDIENTS</small>
+
+        <h1>
+            A Little Slice<br>
+            Of <span>Happiness.</span>
+        </h1>
+
+        <p>
+            Good pizza takes time, fresh ingredients,
+            and a little bit of Italian magic.
+            Welcome to your new favourite pizza place.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#menu" class="btn">Explore Our Menu</a>
+            <a href="#about" class="btn btn-outline">Our Story</a>
+        </div>
+    </div>
+
+    <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1000&q=85" alt="Freshly baked pizza">
+    </div>
+
+</section>
+
+<!-- MENU -->
+<section class="section" id="menu">
+
+    <div class="section-heading">
+        <small>MADE WITH LOVE</small>
+        <h2>Our Favourite Pizzas</h2>
+    </div>
+
+    <div class="menu-grid">
+
+        <div class="food-card">
+            <img src="https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=800&q=85" alt="Margherita pizza">
+
+            <div class="food-info">
+                <h3>Classic Margherita</h3>
+                <p>Fresh mozzarella, tomato sauce and basil leaves.</p>
+
+                <div class="food-bottom">
+                    <span class="price">Rs. 1,199</span>
+                    <button class="add-btn" onclick="addToCart('Classic Margherita',1199)">+ Add</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="food-card">
+            <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=800&q=85" alt="Pepperoni pizza">
+
+            <div class="food-info">
+                <h3>Italian Pepperoni</h3>
+                <p>Cheesy pizza topped with classic pepperoni.</p>
+
+                <div class="food-bottom">
+                    <span class="price">Rs. 1,499</span>
+                    <button class="add-btn" onclick="addToCart('Italian Pepperoni',1499)">+ Add</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="food-card">
+            <img src="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=800&q=85" alt="Cheese pizza">
+
+            <div class="food-info">
+                <h3>Four Cheese</h3>
+                <p>A delicious combination of four rich cheeses.</p>
+
+                <div class="food-bottom">
+                    <span class="price">Rs. 1,599</span>
+                    <button class="add-btn" onclick="addToCart('Four Cheese',1599)">+ Add</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="food-card">
+            <img src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=800&q=85" alt="Vegetable pizza">
+
+            <div class="food-info">
+                <h3>Garden Fresh</h3>
+                <p>Fresh vegetables, olives and mozzarella cheese.</p>
+
+                <div class="food-bottom">
+                    <span class="price">Rs. 1,299</span>
+                    <button class="add-btn" onclick="addToCart('Garden Fresh',1299)">+ Add</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="food-card">
+            <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=800&q=85" alt="Italian pizza">
+
+            <div class="food-info">
+                <h3>Fable Special</h3>
+                <p>Our signature pizza with a special house topping.</p>
+
+                <div class="food-bottom">
+                    <span class="price">Rs. 1,699</span>
+                    <button class="add-btn" onclick="addToCart('Fable Special',1699)">+ Add</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="food-card">
+            <img src="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=800&q=85" alt="Loaded pizza">
+
+            <div class="food-info">
+                <h3>Loaded Supreme</h3>
+                <p>A rich combination of cheese and delicious toppings.</p>
+
+                <div class="food-bottom">
+                    <span class="price">Rs. 1,899</span>
+                    <button class="add-btn" onclick="addToCart('Loaded Supreme',1899)">+ Add</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="cart">
+        🛒 Cart: <span id="cartCount">0</span> Items |
+        Total: Rs. <span id="cartTotal">0</span>
+    </div>
+
+</section>
+
+<!-- ABOUT -->
+<section class="section story" id="about">
+
+    <div>
+        <img src="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=1000&q=85" alt="Fresh Italian pizza">
+    </div>
+
+    <div>
+        <small>OUR STORY</small>
+        <h2>Not Just Pizza.<br>A Little Tradition.</h2>
+
+        <p>
+            At Forno & Fable, we believe great food brings
+            people together. Every pizza starts with fresh
+            ingredients, carefully prepared dough and a
+            passion for good taste.
+        </p>
+
+        <p>
+            From the first bite to the last slice,
+            we want every visit to feel special.
+        </p>
+
+        <a href="#menu" class="btn">Discover Our Menu</a>
+    </div>
+
+</section>
+
+<!-- GALLERY -->
+<section class="section" id="gallery">
+
+    <div class="section-heading">
+        <small>FROM OUR KITCHEN</small>
+        <h2>A Taste Of Our World</h2>
+    </div>
+
+    <div class="gallery-grid">
+
+        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=700&q=85" alt="Pizza gallery">
+
+        <img src="https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=700&q=85" alt="Fresh pizza">
+
+        <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=700&q=85" alt="Pepperoni pizza">
+
+    </div>
+
+</section>
+
+<!-- CONTACT -->
+<section class="section contact" id="contact">
+
+    <small>COME SAY HELLO</small>
+
+    <h2>Good Food. Good Times.</h2>
+
+    <p>
+        Fresh pizza, warm atmosphere and unforgettable moments.<br>
+        We would love to serve you.
+    </p>
+
+    <a href="mailto:hello@fornoandfable.com" class="btn">
+        Contact Us
+    </a>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <h3>FORNO & FABLE.</h3>
+    <p>Crafted with passion. Served with love.</p>
+    <br>
+    <p>© 2026 Forno & Fable. All Rights Reserved.</p>
+</footer>
+
+<script>
+
+let cartCount = 0;
+let cartTotal = 0;
+
+function addToCart(name, price) {
+
+    cartCount++;
+    cartTotal += price;
+
+    document.getElementById("cartCount").innerText = cartCount;
+
+    document.getElementById("cartTotal").innerText =
+        cartTotal.toLocaleString("en-PK");
+
+    alert(name + " added to your cart!");
+}
+
+// Mobile Navbar
+
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+menuToggle.addEventListener("click", function() {
+    navLinks.classList.toggle("show");
+});
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", function() {
+        navLinks.classList.remove("show");
+    });
+});
+
+</script>
+
+</body>
+</html>
